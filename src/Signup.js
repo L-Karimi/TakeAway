@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { postData } from "./Data";
 const Signup = () => {
   let [authMode, setAuthMode] = useState("signin");
 
@@ -8,11 +9,19 @@ const Signup = () => {
 
   const registerUser = (e) => {
     e.preventDefault(e);
+    const frmData = new FormData(document.getElementById("frmSaveUser"));
+    postData(frmData, "save_registered_user")
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">
-        <form className="Auth-form" onSubmit={registerUser}>
+        <form className="Auth-form"  id="frmSaveUser" onSubmit={registerUser}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Register</h3>
             <div className="text-center">
