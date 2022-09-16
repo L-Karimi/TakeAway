@@ -1,3 +1,4 @@
+import { Modal }  from "./Modal";
 import React, { useState } from "react";
 import { postData } from "./Data";
 const Signup = () => {
