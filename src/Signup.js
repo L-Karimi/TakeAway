@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { postData } from "./Data";
 const Signup = () => {
   let [authMode, setAuthMode] = useState("signin");
-
+  const [messageModal, setIsMessageModal] = useState(false);
+  const [response, setResponse] = useState(false);
+  
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
   };
@@ -14,10 +16,19 @@ const Signup = () => {
     postData(frmData, "save_registered_user")
       .then((data) => {
         console.log(data);
+        setResponse(data[0]);
+        setIsMessageModal(true);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+  //close message modal
+  const closeMessageModal = () => {
+    setIsMessageModal(false);
+    setTimeout(function () {
+      // window.location.replace("/manage-user");
+    });
   };
   if (authMode === "signin") {
     return (
@@ -109,6 +120,12 @@ const Signup = () => {
           </div>
         </div>
       </form>
+      <Modal
+        modalIsOpen={messageModal}
+        closeModal={closeMessageModal}
+        background="#0047AB"
+        body={<p className="text-white font-weight-bold h4">{response}</p>}
+      />
     </div>
   );
 };
