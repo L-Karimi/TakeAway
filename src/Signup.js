@@ -1,91 +1,107 @@
+import React,{useState} from "react";
+const Signup = () => {
 
-import React from 'react'
+    let [authMode, setAuthMode] = useState("signin")
 
-const Signup=()=>{
-   
-      
- 
-    //  };
-    //     async function  signup()
-    //     {
-    //      let result = await axios.post("http://localhost:8000/api/register",user);
-    //      setErrors('Registration Successful')
-    //      setUser({name:"",email:"",password:""}) // To Clear all fields
+    const changeAuthMode = () => {
+      setAuthMode(authMode === "signin" ? "signup" : "signin")
+    }
   
-    //      }  
-      
-     return(
-             <div>
-      <a className="hiddenanchor" id="signin"></a>
-
-      <div className="login_wrapper">
-        <div className="animate form login_form">
-          <section className="login_content">
-            <form id="login_form">
-              <h1>
-                <span className="display-5 text-success font-weight-bold">
-                  My Login
+    if (authMode === "signin") {
+      return (
+        <div className="Auth-form-container">
+          <form className="Auth-form">
+            <div className="Auth-form-content">
+              <h3 className="Auth-form-title">Register</h3>
+              <div className="text-center">
+                Not registered yet?{" "}
+                <span className="link-primary" onClick={changeAuthMode}>
+                  Sign Up
                 </span>
-                <span className="display-5 text-info font-italic">
-                  Experience
-                </span>
-              </h1>
-              <div>
+              </div>
+              <div className="form-group mt-3">
+                <label>First Name</label>
                 <input
                   type="text"
-                  className="form-control"
-                  placeholder="First Name"
-                  required={true}
-                  name="firstname"
+                  className="form-control mt-1"
+                  placeholder="Enter first name"
                 />
               </div>
-              <div>
+              <div className="form-group mt-3">
+                <label>Last Name</label>
                 <input
                   type="text"
-                  className="form-control"
-                  placeholder="lastName"
-                  required={true}
-                  name="lastName"
+                  className="form-control mt-1"
+                  placeholder="Enter last name"
                 />
               </div>
-              <div>
+              <div className="form-group mt-3">
+                <label>Phone number</label>
                 <input
-                  type="number"
-                  className="form-control"
-                  placeholder="PhoneNumber"
-                  required={true}
-                  name="phonenumber"
+                  type="Phone number"
+                  className="form-control mt-1"
+                  placeholder="Enter Phone number"
                 />
               </div>
-              <div>
+              <div className="form-group mt-3">
+                <label>Password</label>
                 <input
                   type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  required={true}
-                  name="password"
+                  className="form-control mt-1"
+                  placeholder="Enter password"
                 />
-
-                <p style={{ color: "red" }}></p>
               </div>
-              <div>
-                <button type="submit" className="btn btn-info form-control">
-                  Log in
+              <div className="d-grid gap-2 mt-3">
+                <button type="submit" className="btn btn-primary">
+                  Submit
                 </button>
               </div>
-
-              <div className="clearfix"></div>
-              <div>
-                <p>©2022 All Rights Reserved.</p>
-              </div>
-              <div className="separator"></div>
-            </form>
-          </section>
+             
+            </div>
+          </form>
         </div>
+      )
+    }
+  
+    return (
+      <div className="Auth-form-container">
+        <form className="Auth-form">
+          <div className="Auth-form-content">
+            <h3 className="Auth-form-title">Sign In</h3>
+            <div className="text-center">
+              Already registered?{" "}
+              <span className="link-primary" onClick={changeAuthMode}>
+                Sign In
+              </span>
+            </div>
+            <div className="form-group mt-3">
+              <label>Phoen Number</label>
+              <input
+                type="number"
+                className="form-control mt-1"
+                placeholder="e.g 07..."
+              />
+            </div>
+          
+            <div className="form-group mt-3">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control mt-1"
+                placeholder="Password"
+              />
+            </div>
+            <div className="d-grid gap-2 mt-3">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+           
+          </div>
+        </form>
       </div>
-    </div>
-     )
-
-
-     }
-export default Signup
+    )
+  
+ 
+};
+export default Signup;
