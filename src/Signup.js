@@ -140,6 +140,8 @@ const Signup = () => {
               type="number"
               className="form-control mt-1"
               placeholder="e.g 07..."
+              name="phone_number"
+
             />
           </div>
 
@@ -149,6 +151,7 @@ const Signup = () => {
               type="password"
               className="form-control mt-1"
               placeholder="Password"
+              name="password"
             />
           </div>
           <div className="d-grid gap-2 mt-3">
