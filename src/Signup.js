@@ -1,12 +1,15 @@
 import { default as Modal }  from "./Modal";
 import React, { useState } from "react";
 import { postData } from "./Data";
+import { useNavigate } from "react-router-dom";
+
 
 const Signup = () => {
   let [authMode, setAuthMode] = useState("signin");
   const [messageModal, setIsMessageModal] = useState(false);
   const [response, setResponse] = useState(false);
-  
+  const navigate = useNavigate();
+
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
   };
@@ -17,13 +20,42 @@ const Signup = () => {
     postData(frmData, "save_registered_user")
       .then((data) => {
         console.log(data);
-        setResponse(data);
+        setResponse(["User is registered successfully!"]);
         setIsMessageModal(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const loginUser = (e) => {
+    e.preventDefault(e);
+    const frmData = new FormData(document.getElementById("frmLoginUser"));
+    postData(frmData, "login_registered_user")
+      .then((data) => {
+        console.log(data);
+        if (data.user.length !== 0) {
+          saveDataInStorage(data);
+        } else {
+          setResponse(["Sorry, password or phone Number is incorrect!"]);
+          setIsMessageModal(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const saveDataInStorage = (data) => {
+    if (typeof Storage !== "undefined") {
+      localStorage.setItem("first_name", data.user[0].first_name);
+      localStorage.setItem("last_name", data.user[0].last_name);
+      localStorage.setItem("phone_number", data.user[0].phone_number);
+      navigate('/Profile')
+
+    } else {
+      setResponse(["Sorry, something went wrong, please contact Admin"])
+    }
+  }
   //close message modal
   const closeMessageModal = () => {
     setIsMessageModal(false);
@@ -93,7 +125,7 @@ const Signup = () => {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form">
+      <form className="Auth-form" id="frmLoginUser" onSubmit={loginUser}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
           <div className="text-center">
