@@ -1,4 +1,4 @@
-import { Modal }  from "./Modal";
+import { default as Modal }  from "./Modal";
 import React, { useState } from "react";
 import { postData } from "./Data";
 const Signup = () => {
@@ -45,7 +45,8 @@ const Signup = () => {
             <div className="form-group mt-3">
               <label>First Name</label>
               <input
-                type="text"
+                type="text" 
+                name="first_name"
                 className="form-control mt-1"
                 placeholder="Enter first name"
               />
@@ -54,6 +55,8 @@ const Signup = () => {
               <label>Last Name</label>
               <input
                 type="text"
+                name="last_name"
+
                 className="form-control mt-1"
                 placeholder="Enter last name"
               />
@@ -62,6 +65,7 @@ const Signup = () => {
               <label>Phone number</label>
               <input
                 type="Phone number"
+                name="phone_number"
                 className="form-control mt-1"
                 placeholder="Enter Phone number"
               />
@@ -70,6 +74,7 @@ const Signup = () => {
               <label>Password</label>
               <input
                 type="password"
+                name="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
               />
@@ -114,7 +119,7 @@ const Signup = () => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" >
               Submit
             </button>
           </div>
