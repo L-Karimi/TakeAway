@@ -1,6 +1,7 @@
 import { default as Modal }  from "./Modal";
 import React, { useState } from "react";
 import { postData } from "./Data";
+
 const Signup = () => {
   let [authMode, setAuthMode] = useState("signin");
   const [messageModal, setIsMessageModal] = useState(false);
@@ -16,7 +17,7 @@ const Signup = () => {
     postData(frmData, "save_registered_user")
       .then((data) => {
         console.log(data);
-        setResponse(data[0]);
+        setResponse(data);
         setIsMessageModal(true);
       })
       .catch((error) => {
